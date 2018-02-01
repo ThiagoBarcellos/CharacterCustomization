@@ -14,6 +14,8 @@ public class Customization : MonoBehaviour {
 	int MobilityPoints = 1;
 	int DamagePoints = 1;
 	Button ControlBack, MobilityBack, DamageBack;
+	Button ControlForward, MobilityForward, DamageForward;
+	Button CreateCharacter;
 
 	void Start () {
 
@@ -28,6 +30,12 @@ public class Customization : MonoBehaviour {
 		MobilityBack = GameObject.Find ("MobilityChangerBtBack").GetComponent<Button> ();
 		DamageBack = GameObject.Find ("DamageChangerBtBack").GetComponent<Button> ();
 
+		ControlForward = GameObject.Find ("ControlChangerBt").GetComponent<Button> ();
+		MobilityForward = GameObject.Find ("MobilityChangerBt").GetComponent<Button> ();
+		DamageForward = GameObject.Find ("DamageChangerBt").GetComponent<Button> ();
+
+		CreateCharacter = GameObject.Find ("CreateCharacter").GetComponent<Button> ();
+
 		representation = GameObject.Find("Rep").GetComponent<Image>();
 		CurrBodyID = 0;
 		CurrHeadID = 0;
@@ -41,12 +49,53 @@ public class Customization : MonoBehaviour {
 	}
 
 	void Update(){
-		ChechPoints ();
-	}
+		//control
+		if (ControlPoints == 3) {
+			ControlForward.gameObject.SetActive (false);
+			ControlBack.gameObject.SetActive (true);
+		} 
+		else if (ControlPoints == 1) {
+			ControlForward.gameObject.SetActive (true);
+			ControlBack.gameObject.SetActive (false);
+		} 
+		else {
+			ControlForward.gameObject.SetActive (true);
+			ControlBack.gameObject.SetActive (true);
+		}
 
-	void ChechPoints(){
-		if (ControlPoints == 0) {
-			ControlBack.enabled = false;
+		//mobility
+		if (MobilityPoints == 3) {
+			MobilityForward.gameObject.SetActive (false);
+			MobilityBack.gameObject.SetActive (true);
+		} 
+		else if (MobilityPoints == 1) {
+			MobilityForward.gameObject.SetActive (true);
+			MobilityBack.gameObject.SetActive (false);
+		} 
+		else {
+			MobilityForward.gameObject.SetActive (true);
+			MobilityBack.gameObject.SetActive (true);
+		}
+
+		//Damage
+		if (DamagePoints == 3) {
+			DamageForward.gameObject.SetActive (false);
+			DamageBack.gameObject.SetActive (true);
+		} 
+		else if (DamagePoints == 1) {
+			DamageForward.gameObject.SetActive (true);
+			DamageBack.gameObject.SetActive (false);
+		} 
+		else {
+			DamageForward.gameObject.SetActive (true);
+			DamageBack.gameObject.SetActive (true);
+		}
+
+		if (statPointsLeft == 0) {
+			CreateCharacter.interactable = true;
+		}
+		else {
+			CreateCharacter.interactable = false;
 		}
 	}
 
